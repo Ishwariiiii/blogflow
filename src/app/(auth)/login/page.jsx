@@ -1,4 +1,3 @@
-
 "use client";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
@@ -30,13 +29,13 @@ const Page = () => {
         if (!token || token == "undefined") {
             router.push('/login');
         } else {
-            router.push("/dashboard")
+            router.push("/")
         }
     }, [token])
 
     return (
-        <div className="flex justify-center items-center h-screen bg-slate-900">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <div className="flex justify-center items-center h-screen bg-orange-300">
+            <div className="bg-white p-8 rounded-lg shadow-2xl max-w-md w-full">
                 <h2 className="text-2xl font-semibold text-center mb-6">Sign in</h2>
 
                 <Formik
@@ -71,20 +70,21 @@ const Page = () => {
                                     onChange={handleChange}
                                 />
                                 <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
-                            </div>
+                            </div> 
+                            
 
                             <button
                                 type="submit"
-                                className="w-full bg-slate-600 text-white py-2 rounded-lg hover:bg-slate-800 "
+                                className="w-full bg-orange-400 text-white py-2 rounded-lg hover:bg-orange-800 "
                                 disabled={isSubmitting || isLoading}
                             >
                                 Login
                             </button>
-                            {isLoading ? <Loader /> : <p></p>}
+                            {/* {isLoading ? <Loader /> : <p></p>} */}
 
                             <p className="text-center font-semibold mt-4">or</p>
 
-                            <button type="button" onClick={() => router.push("/register")} className="text-white w-full bg-slate-600 py-2 rounded-lg hover:bg-slate-800 transition duration-200">
+                            <button type="button" onClick={() => router.push("/register")} className="text-white w-full bg-orange-400 py-2 rounded-lg hover:bg-orange-800 transition duration-200">
                                 Register
                             </button>
                         </Form>
