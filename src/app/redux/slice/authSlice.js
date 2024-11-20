@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { toast } from "react-toastify"
 
-
 const initialState= {
   loginData: {},
   token: null,
@@ -13,7 +12,6 @@ const initialState= {
   isErrorMessage: "",
   signupData: {},
 }
-
 
 const loginSlice = createSlice({
   name: "auth",
@@ -81,42 +79,6 @@ const loginSlice = createSlice({
         state.isError = true
         state.isErrorMessage = action.payload
       })
-
-    //   .addCase(forgotPassword.pending, (state,action) => {
-    //     state.isLoading = true
-    //     state.isSuccess = false
-    //     state.isError = false
-    //     state.isErrorMessage = ""
-    //   })
-    //   .addCase(forgotPassword.fulfilled, (state,action) => {
-    //     state.isLoading = false
-    //     state.isSuccess = true
-    //     state.isError = false
-    //   })
-    //   .addCase(forgotPassword.rejected, (state, action) => {
-    //     state.isLoading = false
-    //     state.isSuccess = false
-    //     state.isError = true
-    //     state.isErrorMessage = action.payload
-    //   })
-
-    //   .addCase(resetPassword.pending, (state,action) => {
-    //     state.isLoading = true
-    //     state.isSuccess = false
-    //     state.isError = false
-    //     state.isErrorMessage = ""
-    //   })
-    //   .addCase(resetPassword.fulfilled, (state,action) => {
-    //     state.isLoading = false
-    //     state.isSuccess = true
-    //     state.isError = false
-    //   })
-    //   .addCase(resetPassword.rejected, (state, action) => {
-    //     state.isLoading = false
-    //     state.isSuccess = false
-    //     state.isError = true
-    //     state.isErrorMessage = action.payload
-    //   })
   },
 })
 

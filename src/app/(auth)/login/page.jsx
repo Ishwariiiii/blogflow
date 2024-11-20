@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { loginUser } from '@/app/redux/slice/authSlice';
 
-
-
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
         .email("Invalid email format")
@@ -80,7 +78,6 @@ const Page = () => {
                             >
                                 Login
                             </button>
-                            {/* {isLoading ? <Loader /> : <p></p>} */}
 
                             <p className="text-center font-semibold mt-4">or</p>
 

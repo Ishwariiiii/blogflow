@@ -5,9 +5,13 @@ import FooterIcon from "@/ui/FooterIcon";
 import Search from "@/ui/Search";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getTravelBlog } from "./redux/slice/blog/travelSlice";
+
 
 const Page = () => {
     const router = useRouter();
+    const dispatch = useDispatch()
     const travalData = data;
     // console.log(data)
     const [theme, setTheme] = useState("light");
@@ -20,6 +24,15 @@ const Page = () => {
 
     const toggleTheme = () => {
         setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+    };
+
+    const handleButtonClick = (blog) => {
+        if (token && token !== "undefined") {
+            router.push(`/${blog.id}`);
+            dispatch(getTravelBlog(blog))
+        } else {
+            router.push("/login");
+        }
     };
 
     return (
@@ -108,16 +121,16 @@ const Page = () => {
                             <p className="font-bold text-orange-800">Author: <span className={theme === "light" ? "text-white" : "text-black"}> {blog.author}</span></p>
                             <p className="font-bold mt-4 text-orange-800">Description:  <span className={theme === "light" ? "text-white" : "text-black"}>{blog.description}</span></p>
 
-                            <button id="btn" className="mt-4 p-3 font-semibold  text-orange-800 bg-orange-300 rounded-lg" onClick={() => router.push("/login")}>Click to show more</button>
+                            <button id="btn" className="mt-4 p-3 font-semibold  text-orange-800 bg-orange-300 rounded-lg"
+                                onClick={() => { handleButtonClick(blog) }}>Click to show more</button>
                         </div>
                     </div>
                 ))}
 
             </main>
 
-
             {/* Footer */}
-            <footer className={`p-4 text-center ${theme === "light" ? "bg-gray-900 text-gray-300 font-bold" : "bg-orange-500 text-black font-bold"}`}>
+            <footer className={`p-4 text-center ${theme === "light" ? "bg-gray-900 text-gray-300 font-bold" : "bg-orange-300 text-black font-bold"}`}>
                 <p>
                     2024 &copy; BLOGFLOW APP . All right reserved.
                 </p>
