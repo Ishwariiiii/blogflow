@@ -43,16 +43,16 @@ const BlogDetails = () => {
 
 
   return (
-    <div className="min-h-screen bg-blue-100 p-4 relative">
+    <div className="min-h-screen bg-sky-100 p-4 relative">
       <button
         onClick={handleBackBtn}
-        className="absolute top-4 left-4 bg-orange-300 text-black px-4 py-2 rounded-md hover:bg-orange-400 transition"
+        className="absolute top-4 left-4 bg-orange-200 text-black px-4 py-2 rounded-md hover:bg-orange-400 transition"
       >
         Back
       </button>
 
       <div className="flex flex-col md:flex-row w-full max-w-[1200px] mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-8">
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-orange-300">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-orange-200">
           <img
             src={travelBlog.img}
             alt={travelBlog.title}
@@ -60,7 +60,7 @@ const BlogDetails = () => {
           />
         </div>
 
-        <div className="w-full md:w-1/2 bg-orange-300 flex flex-col p-6">
+        <div className="w-full md:w-1/2 bg-orange-200 flex flex-col p-6">
           <div className="overflow-auto max-h-[500px]">
             <div className="mb-4">
               <h1 className="text-3xl font-bold mb-2 text-gray-900">{travelBlog.title}</h1>
