@@ -6,7 +6,7 @@ import { addComments } from "../redux/slice/blog/travelSlice";
 import { PrivateRoutes } from "../Routes/PrivateRoutes";
 
 const BlogDetails = () => {
-
+ 
   const [like, setLike] = useState(false);
   const [addComment, setAddComment] = useState(false);
   const dispatch = useDispatch()
@@ -39,6 +39,8 @@ const BlogDetails = () => {
     console.log(newComment)
     setAddComment(false)
   }
+
+
 
   return (
     <div className="min-h-screen bg-blue-100 p-4 relative">

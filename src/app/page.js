@@ -9,10 +9,11 @@ import { getTravelBlog } from "./redux/slice/blog/travelSlice";
 
 
 const Page = () => {
-
+    const [searchData, setSearchData] = useState("")
+    const [filteredData, setFilteredData] = useState([])
     const [theme, setTheme] = useState("light");
     const {allTravelBlogs}=useSelector(state=>state.travel)
-    
+
     console.log(allTravelBlogs,"all travelblog data")
 
     const router = useRouter();
@@ -37,6 +38,17 @@ const Page = () => {
         }
     };
 
+    useEffect(() => {
+        if (searchData) {
+          const filtered = allTravelBlogs.filter((item) =>
+            item.title.toLowerCase().includes(searchData.toLowerCase()) ||
+           item.description.toLowerCase().includes(searchData.toLowerCase())
+          )
+          setFilteredData(filtered)
+        } else {
+          setFilteredData(allTravelBlogs)
+        }
+      }, [searchData,allTravelBlogs ])
 
     return (
         <div className="h-screen flex flex-col">
@@ -57,7 +69,8 @@ const Page = () => {
                         <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Cultural</li>
                     </ul>
 
-                    <Search />
+                    {/* <Search /> */}
+                    <input type="search" value={searchData}    onChange={(e) => setSearchData(e.target.value)} placeholder="search here..."/>
 
                     {!token || token === "undefined" ? (
                         <div className="flex space-x-4">
@@ -103,7 +116,7 @@ const Page = () => {
 
             {/* Main Content */}
             <main className={`flex-grow p-6 ${theme === "light" ? "bg-gray-800 text-gray-200" : "bg-blue-100 text-black"}`}>
-                {allTravelBlogs?.map((blog, index) => (
+                {filteredData?.map((blog, index) => (
                     <div
                         key={index}
                         className={`container flex flex-col w-[60%] ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse mx-auto float-right"
