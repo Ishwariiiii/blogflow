@@ -3,8 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { loginUser } from '@/app/redux/slice/authSlice';
+import Loader from '@/ui/Loader';
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -21,6 +22,7 @@ const Page = () => {
     const dispatch = useDispatch()
     const router = useRouter()
     const { isLoading } = useSelector((state) => state.auth)
+    const [loading, setLoading] = useState(false)
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -68,16 +70,28 @@ const Page = () => {
                                     onChange={handleChange}
                                 />
                                 <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
-                            </div> 
-                            
+                            </div>
 
-                            <button
+                            {/* <button
                                 type="submit"
                                 className="w-full bg-orange-400 text-white py-2 rounded-lg hover:bg-orange-800 "
                                 disabled={isSubmitting || isLoading}
                             >
                                 Login
-                            </button>
+                            </button> */}
+
+                            {loading || isLoading ? (
+                                <div className="text-center text-orange-500"><Loader/></div>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    className="w-full bg-orange-400 text-white py-2 rounded-lg hover:bg-orange-800"
+                                    disabled={isSubmitting || isLoading}
+                                >
+                                    Login
+                                </button>
+                            )}
+
 
                             <p className="text-center font-semibold mt-4">or</p>
 
@@ -88,7 +102,7 @@ const Page = () => {
                     )}
                 </Formik>
             </div>
-        </div>
+        </div >
     )
 }
 

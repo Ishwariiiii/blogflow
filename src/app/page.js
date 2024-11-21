@@ -1,20 +1,22 @@
 "use client";
 
-import { data } from "@/data/data";
 import FooterIcon from "@/ui/FooterIcon";
 import Search from "@/ui/Search";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTravelBlog } from "./redux/slice/blog/travelSlice";
 
 
 const Page = () => {
+
+    const [theme, setTheme] = useState("light");
+    const {allTravelBlogs}=useSelector(state=>state.travel)
+    
+    console.log(allTravelBlogs,"all travelblog data")
+
     const router = useRouter();
     const dispatch = useDispatch()
-    const travalData = data;
-    // console.log(data)
-    const [theme, setTheme] = useState("light");
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -35,6 +37,7 @@ const Page = () => {
         }
     };
 
+
     return (
         <div className="h-screen flex flex-col">
             {/* Navbar */}
@@ -48,7 +51,7 @@ const Page = () => {
                         />
                     </span>
                     <ul className={`flex space-x-6 font-semibold ${theme === "light" ? "text-gray-300" : "text-gray-700"}`}>
-                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Nature</li>
+                        <li className="hover:text-blue-900 cursor-pointer" onClick={()=>alert("please login")}>Nature</li>
                         <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Mountains</li>
                         <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Islands</li>
                         <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Cultural</li>
@@ -100,7 +103,7 @@ const Page = () => {
 
             {/* Main Content */}
             <main className={`flex-grow p-6 ${theme === "light" ? "bg-gray-800 text-gray-200" : "bg-blue-100 text-black"}`}>
-                {travalData.map((blog, index) => (
+                {allTravelBlogs?.map((blog, index) => (
                     <div
                         key={index}
                         className={`container flex flex-col w-[60%] ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse mx-auto float-right"

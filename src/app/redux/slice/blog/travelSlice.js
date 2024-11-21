@@ -1,17 +1,26 @@
+import { comments, data } from "@/data/data";
 import { createSlice } from "@reduxjs/toolkit";
 
 const travelSlice = createSlice({
     name: "travel",
     initialState: {
-        allTravelBlogs: [],
-        travelBlog: {}
+
+        allTravelBlogs: data,
+        travelBlog: {},
+        comments:comments
     },
     reducers: {
         getTravelBlog: (state, action) => {
             console.log(action.payload, "travel data from slice")
-
             return {
+                ...state,
                 travelBlog: action.payload
+            }
+        },
+        addComments : (state,action)=>{
+            return{
+                ...state,
+                comments:[...state.comments,action.payload]
             }
         }
     },
@@ -19,5 +28,5 @@ const travelSlice = createSlice({
 
     }
 })
-export const { getTravelBlog } = travelSlice.actions
+export const { getTravelBlog , addComments} = travelSlice.actions
 export default travelSlice.reducer
