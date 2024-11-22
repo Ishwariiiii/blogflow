@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const Navbar = ({ searchData, setSearchData }) => {
     const { allTravelBlogs } = useSelector(state => state.travel);
@@ -8,8 +9,8 @@ const Navbar = ({ searchData, setSearchData }) => {
     const token = localStorage.getItem("token");
 
     return (
-        <div>
-            <nav className="h-16 border-b sticky top-0 bg-orange-200 border-gray-700">
+        <div className='h-[100vh]'>
+            <nav className="h-[10%]  sticky top-0 bg-orange-200">
                 <div className="container mx-auto flex items-center justify-between p-4">
                     <span className="flex items-center space-x-3 rtl:space-x-reverse">
                         <img
@@ -19,15 +20,10 @@ const Navbar = ({ searchData, setSearchData }) => {
                         />
                     </span>
                     <ul className="flex space-x-6 font-semibold text-gray-600">
-                        <li
-                            className="hover:text-blue-900 cursor-pointer"
-                            onClick={() => handleCategoryClick("Nature")}
-                        >
-                            Nature
-                        </li>
-                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Mountains</li>
-                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Islands</li>
-                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => alert("Please Login")}>Cultural</li>
+                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => router.push("/nature")}>Nature </li>
+                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => router.push("/mountain")} >Mountains</li>
+                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => router.push("/island")}>Islands</li>
+                        <li className="hover:text-blue-900 cursor-pointer" onClick={() => router.push("/cultural")}>Cultural</li>
                     </ul>
 
                     {/* Search input */}

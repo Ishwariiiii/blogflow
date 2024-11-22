@@ -3,8 +3,8 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="p-4 text-center bg-orange-200 text-gray-600 font-bold">
+        <div className='h-[100vh]'>
+            <footer className="p-4 text-center  bg-orange-200 text-gray-600 font-bold">
                 <p>
                     2024 &copy; BLOGFLOW APP . All right reserved.
                 </p>

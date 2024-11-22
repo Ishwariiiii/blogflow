@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComments } from "../redux/slice/blog/travelSlice";
 import { PrivateRoutes } from "../Routes/PrivateRoutes";
+import FooterIcon from "@/ui/FooterIcon";
+
 
 const BlogDetails = () => {
- 
+
   const [like, setLike] = useState(false);
   const [addComment, setAddComment] = useState(false);
   const dispatch = useDispatch()
@@ -16,6 +18,7 @@ const BlogDetails = () => {
   })
   const { travelBlog, comments } = useSelector((state) => state.travel);
   const router = useRouter();
+  const [isShare, setIsShare] = useState(false)
 
   const handleBackBtn = () => {
     router.push('/');
@@ -40,6 +43,13 @@ const BlogDetails = () => {
     setAddComment(false)
   }
 
+  const handleShare = () => {
+    if (isShare) {
+      setIsShare(false)
+    } else {
+      setIsShare(true)
+    }
+  }
 
 
   return (
@@ -74,6 +84,7 @@ const BlogDetails = () => {
             <div className="text-gray-800 mt-4 space-y-4">
               <p>{travelBlog.details}</p>
             </div>
+
             <div className="mt-4 flex items-center justify-end space-x-4">
 
               <button className="flex items-center justify-center p-2 bg-gray-200  rounded-md hover:bg-gray-300" onClick={handleLikeClick}>
@@ -84,16 +95,20 @@ const BlogDetails = () => {
                 className="flex items-center justify-center p-2 bg-gray-200 rounded-md hover:bg-gray-300"
                 onClick={handleComment}
               >
-                <i className="fa-regular fa-comment text-gray-700 text-xl"></i>
+                <i className="fa-regular fa-comment text-gray-700 text-xl" ></i>
               </button>
 
-              <button className="flex items-center justify-center p-2 bg-gray-200 rounded-md hover:bg-gray-300">
-                <i className="fa-solid fa-share text-gray-700 text-xl"></i>
+              <button className="flex items-center justify-center p-2 bg-gray-200 rounded-md hover:bg-gray-300"
+                onClick={handleShare}>
+                <i className="fa-solid fa-share text-gray-700 text-xl" ></i>
               </button>
+              {isShare ?
+                <FooterIcon /> :
+                <></>}
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Comments ({comments.length})</h3>
+              {/* <h3 className="text-2xl font-semibold text-gray-900 mb-4">Comments ({comments.length})</h3> */}
               <ul className="space-y-4">
                 {comments?.map((comment, index) => (
                   <li key={index} className="border-b border-gray-300 pb-4">
@@ -152,3 +167,6 @@ const BlogDetails = () => {
 };
 
 export default PrivateRoutes(BlogDetails);
+
+
+
