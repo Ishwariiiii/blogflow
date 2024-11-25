@@ -7,7 +7,7 @@ const Card = ({ blog, index }) => {
     const token = localStorage.getItem("token");
     const router = useRouter()
     const dispatch = useDispatch()
-    console.log(index)
+    // console.log(index)
 
     const handleButtonClick = (blog) => {
         if (token && token !== "undefined") {

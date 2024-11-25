@@ -3,7 +3,7 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { registerUser, verifyEmail } from "@/app/redux/slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { useRouter } from "next/navigation";
 
 const RegisterSchema = Yup.object().shape({
@@ -25,6 +25,7 @@ export default function ShowMoreData() {
       token: signupData.emailVerificationTOken,
     };
     dispatch(verifyEmail(verification));
+    setEmailVerificationBtn(true)
   };
 
   useEffect(() => {
@@ -35,6 +36,13 @@ export default function ShowMoreData() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-orange-300">
+      <button
+        onClick={() => router.push("/")}
+        className="absolute top-4 left-4 bg-orange-400 text-white py-2 px-4 rounded-md hover:bg-orange-800"
+      >
+        Back
+      </button>
+
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Registration Page</h1>
         <Formik

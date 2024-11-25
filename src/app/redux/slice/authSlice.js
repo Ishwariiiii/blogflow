@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { toast } from "react-toastify"
 
-const initialState= {
+const initialState = {
   loginData: {},
   token: null,
   isLoading: false,
@@ -26,7 +26,7 @@ const loginSlice = createSlice({
         state.isErrorMessage = ""
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log(action.payload,"login dataaa sliceee")
+        console.log(action.payload, "login dataaa sliceee")
         state.isLoading = false
         state.isSuccess = true
         state.isError = false
@@ -38,10 +38,10 @@ const loginSlice = createSlice({
         state.isLoading = false
         state.isSuccess = false
         state.isError = true
-        state.isErrorMessage = action.payload 
+        state.isErrorMessage = action.payload
       })
 
-      .addCase(registerUser.pending, (state,action) => {
+      .addCase(registerUser.pending, (state, action) => {
         state.isLoading = true
         state.isSuccess = false
         state.isError = false
@@ -61,13 +61,13 @@ const loginSlice = createSlice({
         state.isErrorMessage = action.payload
       })
 
-      .addCase(verifyEmail.pending, (state,action) => {
+      .addCase(verifyEmail.pending, (state, action) => {
         state.isLoading = true
         state.isSuccess = false
         state.isError = false
         state.isErrorMessage = ""
       })
-      .addCase(verifyEmail.fulfilled, (state,action) => {
+      .addCase(verifyEmail.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
         state.isError = false
@@ -94,7 +94,7 @@ export const loginUser = createAsyncThunk(
         position: "top-right",
         autoClose: 1000,
       });
-      console.log(response,"login data")
+      console.log(response, "login data")
       return response.data.data
     } catch (error) {
       toast.error("Invalid user", {
@@ -145,43 +145,3 @@ export const verifyEmail = createAsyncThunk(
     }
   }
 )
-
-// export const forgotPassword = createAsyncThunk(
-//   "FORGOT/PASSWORD",
-//   async (email: { email }) => {
-//     try {
-//       const response = await axios.post("https://node-js-wse4.onrender.com/user/forgot-password", email);
-//       toast.success("Password reset link has been sent to your account", {
-//         position: "top-right",
-//         autoClose: 1000,
-//       })
-//       return response.data.message
-//     } catch (error) {
-//       toast.error("Request failed. Please try again", {
-//         position: "top-right",
-//         autoClose: 1000,
-//       })
-//     }
-//   }
-// )
-
-// export const resetPassword = createAsyncThunk(
-//   "RESET/PASSWORD",
-//   async (reset) => {
-//     try {
-//       const response = await axios.post("https://node-js-wse4.onrender.com/user/reset-password", reset)
-//       toast.success("Password reset successfully", {
-//         position: "top-right",
-//         autoClose: 1000,
-//       })
-//       return response.data.message
-//     } catch (error) {
-//       toast.error("Failed", {
-//         position: "top-right",
-//         autoClose: 1000,
-//       })
-//     }
-//   }
-// )
-
-

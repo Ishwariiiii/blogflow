@@ -1,6 +1,6 @@
 "use client"
 
-import Card from "@/app/components/Card";
+import Card from "@/app/Components/Card";
 import React from "react";
 import { useSelector } from "react-redux";
 

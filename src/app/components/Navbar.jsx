@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
-import Link from 'next/link';
+
 
 const Navbar = ({ searchData, setSearchData }) => {
     const { allTravelBlogs } = useSelector(state => state.travel);
@@ -26,7 +26,6 @@ const Navbar = ({ searchData, setSearchData }) => {
                         <li className="hover:text-blue-900 cursor-pointer" onClick={() => router.push("/cultural")}>Cultural</li>
                     </ul>
 
-                    {/* Search input */}
                     <input
                         type="search"
                         value={searchData}
@@ -35,7 +34,6 @@ const Navbar = ({ searchData, setSearchData }) => {
                         className="p-2 rounded-lg bg-gray-200"
                     />
 
-                    {/* Auth buttons */}
                     {!token || token === "undefined" ? (
                         <div className="flex space-x-4">
                             <button
@@ -52,6 +50,7 @@ const Navbar = ({ searchData, setSearchData }) => {
                             </button>
                         </div>
                     ) : (
+                      
                         <button
                             className="font-semibold text-gray-600 hover:text-blue-900"
                             onClick={() => {

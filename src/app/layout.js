@@ -2,6 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ReduxProvider from "./redux-provider";
 import 'font-awesome/css/font-awesome.min.css';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <link
+        <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
@@ -32,7 +34,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          {children}
+          <ToastContainer/>
+            {children}
+         
         </ReduxProvider>
       </body>
     </html>

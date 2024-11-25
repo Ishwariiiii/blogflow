@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { loginUser } from '@/app/redux/slice/authSlice';
 import Loader from '@/ui/Loader';
 
@@ -21,7 +21,6 @@ const Page = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { isLoading } = useSelector((state) => state.auth);
-    const [loading, setLoading] = useState(false);
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -42,7 +41,7 @@ const Page = () => {
                     <i className="fa-solid fa-arrow-left"></i>
                 </button>
 
-                <h2 className="text-2xl font-semibold text-center mb-6">Sign in</h2>
+                <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
 
                 <Formik
                     initialValues={{ email: '', password: '' }}
@@ -78,8 +77,8 @@ const Page = () => {
                                 <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
                             </div>
 
-                            {/* Show loader or button based on loading state */}
-                            {loading || isLoading ? (
+                          
+                            {isLoading ? (
                                 <div className="text-center text-orange-500">
                                     <Loader />
                                 </div>

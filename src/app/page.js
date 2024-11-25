@@ -1,21 +1,19 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTravelBlog } from "./redux/slice/blog/travelSlice";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 const Page = () => {
     const [searchData, setSearchData] = useState("");
     const [filteredData, setFilteredData] = useState([]);
-
     const { allTravelBlogs } = useSelector(state => state.travel);
     const router = useRouter();
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
-
 
     useEffect(() => {
         if (searchData) {
@@ -40,13 +38,14 @@ const Page = () => {
 
     return (
         <div className="h-[100vh] flex flex-col bg-orange-200">
+         
             {/* Pass props to Navbar */}
             <Navbar
                 searchData={searchData}
                 setSearchData={setSearchData}
             />
             {/* hero section */}
-            <section className="h-[60vh] bg-gradient-to-r bg-sky-100 to-indigo-600 flex flex-col justify-center items-center text-black text-center p-6">
+            {/* <section className="h-[60vh] bg-gradient-to-r bg-sky-100 to-indigo-600 flex flex-col justify-center items-center text-black text-center p-6">
                 <h1 className="text-5xl font-bold mb-4">Hello...</h1>
                 <h1 className="text-5xl font-bold mb-4">Welcome to Our Travel Blog</h1>
                 <h1 className="text-4xl">Explore the World with Us</h1>
@@ -56,7 +55,7 @@ const Page = () => {
                 <button className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition duration-200">
                     Get Started
                 </button>
-            </section>
+            </section> */}
             {/* hero section enddddd */}
 
 
@@ -91,10 +90,8 @@ const Page = () => {
                                             onClick={() => { handleButtonClick(blog) }}>Click to show more</button>
                                     </div>
                                 </div>
-
                             )
                         }
-
                     })}
             </main>
 
@@ -106,4 +103,3 @@ const Page = () => {
 };
 
 export default Page;
-
